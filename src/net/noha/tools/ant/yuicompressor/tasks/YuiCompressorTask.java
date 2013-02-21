@@ -325,8 +325,8 @@ public class YuiCompressorTask extends MatchingTask {
         if (!fromDir.isDirectory()) {
             throw new BuildException(fromDir + " is not a valid directory");
         }
-        if (!toDir.isDirectory()) {
-            throw new BuildException(toDir + " is not a valid directory");
+        if (!(toDir.isDirectory() || toDir.mkdirs())) {
+            throw new BuildException(toDir + " is not a valid directory and could not be created");
         }
     }
 }
